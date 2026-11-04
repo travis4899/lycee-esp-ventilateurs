@@ -1,0 +1,19 @@
+(kicad_sch
+  (version 20250114)
+  (generator "eeschema")
+  (uuid "8d4e61e8-1f8b-4f9b-a12c-1a4c8c2b3601")
+  (paper "A4")
+  (lib_symbols)
+  (text "Émetteur IR 360° — feuille de travail\n\nCette feuille est initialisée. Les symboles et connexions seront ajoutés après validation du dimensionnement électrique et des références de brochage.\n\nArchitecture prévue : 8 branches TSAL6200 indépendantes, commande low-side par AO3400A, entrée JST-XH GND / +5V / IR."
+    (exclude_from_sim no)
+    (at 45 45 0)
+    (effects
+      (font (size 2.0 2.0))
+      (justify left top)
+    )
+    (uuid "8d4e61e8-1f8b-4f9b-a12c-1a4c8c2b3602")
+  )
+  (embedded_fonts no)
+  (symbol_instances
+  )
+)
