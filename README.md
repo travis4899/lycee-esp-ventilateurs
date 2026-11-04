@@ -2,29 +2,17 @@
 
 Projet de réalisation d'un système connecté permettant de piloter les ventilateurs installés dans les salles de classe du lycée, avec une supervision et une commande centralisées depuis **Home Assistant**.
 
-Le projet s'appuie sur des microcontrôleurs **ESP32** programmés avec **ESPHome**, afin de disposer de modules autonomes, faciles à déployer, à maintenir et à intégrer dans Home Assistant.
+Le système repose sur des microcontrôleurs **ESP32** programmés avec **ESPHome**. L'objectif est de disposer de modules autonomes, reproductibles et faciles à maintenir, tout en conservant une gestion centralisée.
 
 ## Présentation du besoin
 
-Chaque salle de classe est équipée de **9 ventilateurs**. L'objectif est de pouvoir les commander simplement, sans devoir intervenir individuellement sur chaque appareil.
+Chaque salle de classe est équipée de **9 ventilateurs**. Le projet vise à commander ces ventilateurs depuis une interface commune, sans intervention individuelle sur chaque appareil.
 
 Le déploiement envisagé concerne à terme environ **50 salles**, soit jusqu'à **450 ventilateurs**.
 
-Le système devra permettre :
+## Architecture générale
 
-- de commander les ventilateurs d'une salle depuis une interface commune ;
-- de centraliser le pilotage de toutes les salles dans Home Assistant ;
-- de connaître, autant que possible, l'état de fonctionnement des équipements ;
-- de déployer et maintenir les modules de commande de manière homogène ;
-- de faire évoluer progressivement l'installation, salle par salle.
-
-## Architecture générale envisagée
-
-Chaque salle disposera d'un module ESP32 chargé de transmettre les commandes aux ventilateurs de la pièce.
-
-**ESPHome** sera utilisé pour le firmware des ESP32. Les appareils seront intégrés à **Home Assistant**, qui assurera la centralisation des commandes, des automatismes et de l'interface de supervision.
-
-Vue logique simplifiée :
+Chaque salle disposera d'un module ESP32 exécutant ESPHome. Celui-ci assurera la commande locale des ventilateurs. Les modules seront intégrés au réseau IP du lycée et supervisés depuis Home Assistant.
 
 ```text
                     HOME ASSISTANT
@@ -46,18 +34,31 @@ Vue logique simplifiée :
                     ... environ 50 salles
 ```
 
-Le moyen de commande local des ventilateurs sera défini et validé au fil du développement. Les premières études portent notamment sur une commande infrarouge, avec des émetteurs adaptés à la couverture de l'ensemble d'une salle.
+Le premier axe matériel étudié est une commande infrarouge. Un émetteur IR à diffusion horizontale est développé pour couvrir une salle sans devoir viser chaque ventilateur séparément.
 
-## Pourquoi ESPHome ?
+## Pourquoi ESPHome et Home Assistant ?
 
-ESPHome permet de décrire le fonctionnement des modules dans des fichiers de configuration lisibles, de compiler et mettre à jour les firmwares, et d'intégrer nativement les équipements dans Home Assistant.
+- **ESPHome** permet de configurer et de mettre à jour les ESP32 de manière homogène.
+- **Home Assistant** fournit l'interface centralisée, les automatismes et la supervision.
+- Une configuration par salle permet de reproduire le déploiement et de faire évoluer progressivement l'installation.
+- L'état de disponibilité de chaque module pourra être suivi depuis Home Assistant.
 
-Cette approche doit faciliter :
+## Sous-projets matériels
 
-- la reproduction d'une configuration identique dans de nombreuses salles ;
-- la supervision centralisée des équipements ;
-- les mises à jour et la maintenance ;
-- l'ajout progressif de fonctions et d'automatismes.
+### Émetteur infrarouge 360°
+
+Le premier sous-projet matériel est une carte émettrice IR circulaire destinée à diffuser les commandes dans le plan horizontal.
+
+Principaux choix de composants :
+- 8 LED infrarouges Vishay TSAL6200 ;
+- 8 résistances de limitation de 22 Ω / 1 W ;
+- 1 MOSFET N Infineon IRLML6344TRPBF pour la commutation côté masse ;
+- 1 résistance de grille de 100 Ω et 1 résistance de rappel de 10 kΩ ;
+- 1 condensateur céramique KEMET 100 nF / 50 V X7R ;
+- 1 condensateur électrolytique Panasonic 1000 µF / 10 V ;
+- alimentation 5 V externe et connecteur JST-XH 3 broches.
+
+La conception, les références fabricants, les liens vers les fiches techniques, les calculs préliminaires et les points de validation sont documentés dans le [dossier matériel de l'émetteur IR 360°](./hardware/emetteur-ir-360/README.md).
 
 ## Organisation du dépôt
 
@@ -65,32 +66,30 @@ Cette approche doit faciliter :
 .
 ├── hardware/
 │   └── emetteur-ir-360/
-│       ├── kicad/       Conception électronique KiCad
+│       ├── kicad/       Schéma et circuit imprimé
 │       └── mecanique/   Boîtier et pièces imprimées en 3D
 ├── README.md
 └── LICENSE
 ```
 
-Les différents sous-projets, firmwares ESPHome, documentations de câblage et outils de déploiement seront ajoutés à mesure que l'architecture sera stabilisée.
+Les firmwares ESPHome, les configurations de salles, les procédures de déploiement et les outils de maintenance seront ajoutés à mesure que le projet avancera.
 
-## État du développement
+## Étapes du projet
 
-Le projet est en phase de conception et de prototypage.
-
-### Premiers travaux
-
-- [x] Création du dépôt et de son arborescence initiale.
-- [x] Définition du principe d'une commande centralisée Home Assistant / ESPHome.
-- [ ] Valider le protocole de commande des ventilateurs.
-- [ ] Réaliser et tester un premier émetteur de commande couvrant une salle.
+- [x] Créer le dépôt et son arborescence initiale.
+- [x] Définir le principe Home Assistant / ESPHome.
+- [x] Documenter le premier choix de composants de l'émetteur IR.
+- [ ] Finaliser et vérifier le schéma électronique.
+- [ ] Concevoir et router le PCB.
+- [ ] Réaliser le boîtier imprimé en 3D.
+- [ ] Tester la portée et la couverture IR dans une salle.
 - [ ] Développer le firmware ESPHome du module de salle.
 - [ ] Intégrer le module dans Home Assistant.
-- [ ] Valider le fonctionnement simultané des 9 ventilateurs d'une salle.
-- [ ] Préparer une architecture reproductible pour le déploiement dans environ 50 salles.
-- [ ] Documenter l'installation, la configuration et la maintenance.
+- [ ] Valider le fonctionnement des 9 ventilateurs d'une salle.
+- [ ] Préparer le déploiement reproductible dans environ 50 salles.
 
 ## Licence
 
-Ce projet est distribué sous les termes de la **GNU General Public License v3.0 (GPL-3.0)**. Le texte complet de la licence est disponible dans le fichier [LICENSE](./LICENSE).
+Ce projet est distribué sous les termes de la **GNU General Public License v3.0 (GPL-3.0)**. Le texte complet est disponible dans le fichier [LICENSE](./LICENSE).
 
-Les composants, bibliothèques et matériels tiers éventuellement utilisés conservent leurs licences et conditions propres.
+Les composants, bibliothèques, documentations et matériels tiers conservent leurs licences et conditions propres.
