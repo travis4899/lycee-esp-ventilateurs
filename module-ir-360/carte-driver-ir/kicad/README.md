@@ -9,7 +9,7 @@ Ce dossier contient les documents de conception électronique de l'émetteur inf
 - `ir-360.kicad_sch` : feuille de schéma KiCad initialisée.
 - `ir-360.kicad_pcb` : fichier PCB KiCad initialisé.
 
-**État actuel :** les fichiers KiCad sont des bases de travail, pas encore une conception électronique complète ou validée. Le schéma natif doit encore recevoir les symboles, les connexions, les références et les empreintes réelles. Le PCB ne contient pas encore le placement ni le routage définitifs.
+**État actuel :** les fichiers KiCad sont des bases de travail, pas encore une conception électronique complète ou validée. Le schéma natif doit encore recevoir les symboles, les connexions, les références et les empreintes réelles. Le PCB ne contient pas encore le placement ni le routage définitifs. Le fichier projet `.kicad_pro` est lui aussi à contrôler et à valider à l'ouverture dans KiCad ; ne pas le considérer comme vérifié.
 
 ## Architecture électrique à saisir
 
