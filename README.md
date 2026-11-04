@@ -66,13 +66,15 @@ La conception, les références fabricants, les liens vers les fiches techniques
 .
 ├── hardware/
 │   └── emetteur-ir-360/
-│       ├── kicad/       Schéma et circuit imprimé
-│       └── mecanique/   Boîtier et pièces imprimées en 3D
+│       ├── carte-driver-ir/  Carte électronique et projet KiCad
+│       ├── esphome/          YAML du module ESP32
+│       └── mecanique/
+│           └── boitier-3d/   CAO et fichiers d'impression 3D
 ├── README.md
 └── LICENSE
 ```
 
-Les firmwares ESPHome, les configurations de salles, les procédures de déploiement et les outils de maintenance seront ajoutés à mesure que le projet avancera.
+Le sous-projet émetteur IR est organisé en trois livrables complémentaires : la carte driver IR, la configuration ESPHome du module de salle et le boîtier imprimé en 3D. Chaque dossier possède son propre README qui précise son contenu et les éléments restant à produire.
 
 ## Étapes du projet
 
@@ -83,7 +85,7 @@ Les firmwares ESPHome, les configurations de salles, les procédures de déploie
 - [ ] Concevoir et router le PCB.
 - [ ] Réaliser le boîtier imprimé en 3D.
 - [ ] Tester la portée et la couverture IR dans une salle.
-- [ ] Développer le firmware ESPHome du module de salle.
+- [ ] Développer et valider le YAML ESPHome du module de salle.
 - [ ] Intégrer le module dans Home Assistant.
 - [ ] Valider le fonctionnement des 9 ventilateurs d'une salle.
 - [ ] Préparer le déploiement reproductible dans environ 50 salles.
