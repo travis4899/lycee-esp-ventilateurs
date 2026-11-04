@@ -188,7 +188,8 @@ Le support mécanique doit éviter que les LED puissent pivoter ou que les effor
 
 ## 8. Arborescence du module
 
-- `carte-driver-ir/kicad/` : fichiers du projet électronique.
+- `carte-driver-ir/kicad/` : fichiers du projet électronique KiCad.
+- `esphome/` : configuration ESPHome du module ESP32 de la salle.
 - `boitier-3d/` : conception du boîtier, supports et fichiers d'impression 3D.
 
 ## 9. Vérifications avant fabrication
