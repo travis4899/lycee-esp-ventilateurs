@@ -1,0 +1,11 @@
+# Exemple de structure uniquement — non déployable en l'état.
+# Copier vers module-ir-360.yaml puis renseigner la carte, le GPIO et
+# les paramètres IR après validation du matériel et du protocole des ventilateurs.
+
+substitutions:
+  device_name: "module-ir-360"
+  friendly_name: "Module IR 360"
+
+# À compléter avec la plateforme et le modèle exacts de carte ESP32.
+# À compléter avec les paramètres Wi-Fi, API et OTA via secrets.yaml.
+# À compléter avec la sortie IR et le protocole réellement relevé.
