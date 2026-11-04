@@ -58,21 +58,22 @@ Principaux choix de composants :
 - 1 condensateur électrolytique Panasonic 1000 µF / 10 V ;
 - alimentation 5 V externe et connecteur JST-XH 3 broches.
 
-La conception, les références fabricants, les liens vers les fiches techniques, les calculs préliminaires et les points de validation sont documentés dans le [dossier matériel de l'émetteur IR 360°](./module-ir-360/README.md).
+La conception, les références fabricants, les liens vers les fiches techniques, les calculs préliminaires et les points de validation sont documentés dans le [dossier matériel de l'émetteur IR 360°](./emetteur-ir-360/README.md).
 
 ## Organisation du dépôt
 
+Les trois parties du projet sont directement à la racine du dépôt :
+
 ```text
 .
-├── module-ir-360/
-│   ├── carte-driver-ir/  Carte électronique et projet KiCad
-│   ├── esphome/          YAML du module ESP32
-│   └── boitier-3d/       CAO et fichiers d'impression 3D
+├── esphome/          Configuration du module ESP32
+├── emetteur-ir-360/  Carte électronique et projet KiCad
+├── boitier/          Conception et impression 3D
 ├── README.md
 └── LICENSE
 ```
 
-Le sous-projet émetteur IR est organisé en trois livrables complémentaires : la carte driver IR, la configuration ESPHome du module de salle et le boîtier imprimé en 3D. Chaque dossier possède son propre README qui précise son contenu et les éléments restant à produire.
+Chaque dossier possède son README qui décrit son rôle, son contenu et les éléments restant à réaliser.
 
 ## Étapes du projet
 
