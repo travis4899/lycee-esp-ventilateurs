@@ -11,6 +11,10 @@ Ce dossier documentera le boîtier imprimé en 3D et les pièces de maintien de 
 - Maintien mécanique des LED par le boîtier imprimé en 3D afin de ne pas faire porter les efforts sur les seules soudures.
 - Accès au connecteur JST-XH et au trou central de fixation M3.
 
+## Organisation
+
+La conception détaillée du boîtier et les fichiers destinés à l'impression sont regroupés dans le dossier [boitier-3d](./boitier-3d/README.md).
+
 ## À définir
 
 - Géométrie exacte du support des LED.
