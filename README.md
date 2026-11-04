@@ -58,18 +58,16 @@ Principaux choix de composants :
 - 1 condensateur électrolytique Panasonic 1000 µF / 10 V ;
 - alimentation 5 V externe et connecteur JST-XH 3 broches.
 
-La conception, les références fabricants, les liens vers les fiches techniques, les calculs préliminaires et les points de validation sont documentés dans le [dossier matériel de l'émetteur IR 360°](./hardware/emetteur-ir-360/README.md).
+La conception, les références fabricants, les liens vers les fiches techniques, les calculs préliminaires et les points de validation sont documentés dans le [dossier matériel de l'émetteur IR 360°](./module-ir-360/README.md).
 
 ## Organisation du dépôt
 
 ```text
 .
-├── hardware/
-│   └── emetteur-ir-360/
-│       ├── carte-driver-ir/  Carte électronique et projet KiCad
-│       ├── esphome/          YAML du module ESP32
-│       └── mecanique/
-│           └── boitier-3d/   CAO et fichiers d'impression 3D
+├── module-ir-360/
+│   ├── carte-driver-ir/  Carte électronique et projet KiCad
+│   ├── esphome/          YAML du module ESP32
+│   └── boitier-3d/       CAO et fichiers d'impression 3D
 ├── README.md
 └── LICENSE
 ```
